@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="div1" style="background-color: brown; height: 200px; width: 200px; position: absolute; top: 300px;">hhea</div>
+    <button id="btn1">Animate</button>
+    <script>
+        $('#btn1').click(function(){
+            // $('.div1').animate({
+            //     left:'100px',height:'300px',width:'300px', opacity:0.5
+            // })
+            // $('.div1').animate({
+            //     fontSize:'50px'
+            // })
+            
+        //     for(let i=0;i<10;i++){
+
+           
+        //     var div=$('.div1')
+        //     div.animate({
+        //         height:'300px',opacity:'0.4'
+        //     },'slow')
+        //     div.animate({
+        //         width:'300px',opacity:'0.8'
+        //     },'slow')
+        //     div.animate({
+        //         height:'100px',opacity:'0.4'
+        //     },'slow')
+        //     div.animate({
+        //         width:'100px',opacity:'0.4'
+        //     },'slow')}
+        $('.div1').css('backgroundColor','blue').slideUp(1000).slideDown(1000)
+        })
+
+    </script>
+</body>
+</html>

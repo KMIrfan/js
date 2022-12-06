@@ -1,0 +1,178 @@
+<!-- data to table and edit from table -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</head>
+<body>
+   
+    
+            <label for="pname">Product Name :</label>
+           <input type="text" id="pname" name="pname">
+            <span id="spname"></span></td>
+        <br>
+        <br>
+            <label for="pd">Product Description :</label>
+            <input type="text" id="pd" name="pd">
+            <span id="spd"></span></td>
+       <br>
+       <br>
+            <label for="cs">Current Stock:</label>
+            <input type="text" id="cs" name="cs">
+            <span id="scs"></span>
+       <br>
+       <br>
+       
+            <label for="price">Price:</label>
+           <input type="text" id="price" name="price">
+            <span id="sprice"></span>
+        <br>
+        <br>
+            
+            <button name="btn" id="btn1" onclick="clic()" type="submit">Submit</button>
+        
+ 
+    
+    <table border="1" id="tab1" width="100%">
+        <tr>
+            <th>
+                sl.No.
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>Date</th>
+            <th>stock</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Operation</th>
+
+        </tr>
+    </table>
+   
+    <div class="modal fade" id="mymodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label>Product Name</label>
+                <input type="text" id="mpname" name="pname">
+                <br>
+                <label>Product Description</label>
+                <input type="text" id="mpd" name="pd">
+                <br>
+                <label>Stock</label>
+                <input type="text" id="mstock" name="stock">
+                <br>
+                <label>Price</label>
+                <input type="text" id="mprice" name="price">
+                <br>
+                <input type="text" id="mhid" hidden name="hid">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary"  id="btn_edit" data-bs-dismiss="modal" onclick="edi()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    <script>
+        let i=1;
+        function clic()
+        {
+            const d=new Date();
+            var tab=document.getElementById('tab1');
+            var pname=document.getElementById('pname').value;
+            var pd=document.getElementById('pd').value;
+            var cs=document.getElementById('cs').value;
+            var price=document.getElementById('price').value;
+            
+            var row=tab.insertRow();
+            row.setAttribute('id','row'+i);
+            var cell1=row.insertCell(0);
+            var cell2=row.insertCell(1);
+            var cell3=row.insertCell(2);
+            var cell4=row.insertCell(3);
+            var cell5=row.insertCell(4);
+            var cell6=row.insertCell(5);
+            var cell7=row.insertCell(6);
+            var cell8=row.insertCell(7);
+            
+            cell1.innerHTML=i++;
+            cell2.innerHTML=pname;
+            cell3.innerHTML=pd;
+            cell4.innerHTML=d.toDateString();
+            cell5.innerHTML=cs;
+            cell6.innerHTML=price;
+
+            var btn_create = document.createElement('BUTTON')
+            btn_create.innerHTML='complete';
+            btn_create.onclick=function com(){
+                cell7.innerHTML='completed';
+                btn_create.disabled=true;
+
+            }
+            
+            var btn_delete=document.createElement('BUTTON')
+            btn_delete.innerHTML='Delete';
+            cell7.appendChild(btn_create);
+            cell8.appendChild(btn_delete);
+
+            btn_delete.addEventListener('click',function handleClick(event){
+                var element_id=event.target.parentElement.parentElement.id;
+                element=document.getElementById(element_id);
+                element.remove();
+            })
+         var btn_edit=document.createElement('BUTTON')
+         btn_edit.innerHTML='Edit';
+         cell8.appendChild(btn_edit);
+
+         btn_edit.setAttribute('data-bs-toggle', 'modal');
+         btn_edit.setAttribute('data-bs-target', '#mymodal');
+         btn_edit.addEventListener('click',function handleEdit(event){
+                edit_id=event.target.parentElement.parentElement.id;
+                edit_list=document.getElementById(edit_id).childNodes;
+                document.getElementById('pname').value=edit_list[1].innerHTML
+                document.getElementById('pd').value=edit_list[2].innerHTML
+                document.getElementById('cs').value=edit_list[4].innerHTML
+                document.getElementById('price').value=edit_list[5].innerHTML
+                document.getElementById('hid').value=edit_id
+
+        })
+    }
+
+    function edi()
+    {
+        var pro=document.getElementById('mpname').value;
+        var prodec=document.getElementById('mpd').value;
+        var stc=document.getElementById('mstock').value;
+        var pri=document.getElementById('mprice').value;
+       
+        edit_list[1].innerHTML=pro;
+        edit_list[2].innerHTML=prodec;
+        edit_list[3].innerHTML=new Date().toDateString();
+        edit_list[4].innerHTML=stc;
+        edit_list[5].innerHTML=pri;
+    }
+
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+</body>
+</html>
