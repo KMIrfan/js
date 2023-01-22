@@ -11,4 +11,9 @@ def common_new(request):
     return render(request,'commontemp/new.html')
     
 def common_anim(request):
-    return render(request,'commontemp/animation.html')        
+    return render(request,'commontemp/animation.html')
+def common_new1(request):
+    return render(request,'commontemp/new2.html')  
+
+def common_new10(request):
+    return render(request,'commontemp/database.html')           

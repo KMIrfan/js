@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+        .temp{
+            color: brown;
+            font-size: 30px;
+            background-color: rgb(32, 116, 88);
+        }
+    </style>
+    
+</head>
+<body>
+    <p id="p1">Lorem ipsum dolor sit <b>demo</b>amet consectetur adipisicing elit. Adipisci, vero?</p>
+    <button id="b1" type="button">Show Text</button>
+    <button id="b2" type="button">Show HTML</button>
+    <input id="in" type="text">
+    <button id="b3" type="button">Show value</button>
+
+    <p id="p2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis nisi, libero 
+        tempora iure voluptates maiores eius quis ad quisquam consectetur!</p>
+
+        <button id="b4" type="button">Set HTML</button>
+        <button id="b5" type="button">Set Text</button>
+        <button id="b6" type="button">Set Value</button>
+        <input id="in1" type="text">
+
+        <div class="div1" style="height: 200px; width: 600px; border: solid 1px black; background-color: aquamarine;">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <b>Lorem ipsum dolor sit amet.</b>
+            <h4>Lorem, ipsum dolor.</h4>
+          </div>
+         <button id="remove" type="button">Remove</button>
+        <button id="empty" type="button">Empty</button>
+
+        <button id="class" type="button">Class</button>
+        <button id="dim" type="button">Dimension</button>
+        <div id="div2" style="height: 200px; width: 300px; padding: 20px; margin: 20px; background-color: burlywood; ">
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+
+        <p id="p10">Lorem ipsum dolor sit amet.
+            <span>Demo</span>
+        </p>
+        <div id="div4">
+            <p>Lorem, ipsum dolor.</p>
+            <h2>test</h2>
+            <b>demo</b>
+        </div>
+    <script>
+        $(document).ready(function(){
+            $('#b2').click (function(){
+                alert($('#p1').html())
+            })
+
+            $('#b1').click (function(){
+                alert($('#p1').text())
+            })
+
+            $('#b3').click(function(){
+                alert($('#in').val())
+            })
+
+            $('#b4').click(function(){
+                $('#p2').html('irfan<b>km</b>')
+            })
+            $('#b5').click(function(){
+                $('#p2').text('irfan<b>km</b>')
+            })
+            $('#b6').click(function(){
+                $('#in1').val('irfan')
+            })
+            $('#remove').click(function(){
+                $('.div1').remove()
+            })
+            $('#empty').click(function(){
+                $('.div1').empty()
+            })
+
+            $('#class').click(function(){
+                $('.div1, input').addClass('temp')
+            })
+            $('#dim').click(function(){
+                var temp1='';
+                temp1 += 'width:' + $('#div2').width() + '<br>'
+                temp1 += 'height' + $('#div2').height() + '<br>'
+                temp1 += 'innerwidth' + $('#div2').innerWidth() + '<br>'
+                temp1 += 'innerheight' + $('#div2').innerHeight() + '<br>'
+                $('#div2').html(temp1)
+
+            })
+
+            // $('span').parents().css({
+            //     'color':'green'
+            // })
+
+            // $('.div1').children().css({
+            //     'color':'green'
+            // })
+
+            // $('h2').siblings().css({
+            //     'color':'green'
+            // })
+
+            $('div').last().css({
+                'color':'red'
+            })
+
+
+                
+            
+        })
+    </script>
+</body>
+</html>
